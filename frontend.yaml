@@ -59,7 +59,7 @@ metadata:
   labels:
     name: front-end
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 80
     targetPort: 8079
@@ -72,13 +72,13 @@ metadata:
   name: front-end
   annotations:
     traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/router.middlewares: demos-stripprefix@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: demo-ecommerce-stripprefix@kubernetescrd
 spec:
   ingressClassName: kommander-traefik
   rules:
   - http:
       paths:
-      - path: /demos/sockshop
+      - path: /sockshop
         pathType: Prefix
         backend:
           service:
@@ -103,10 +103,9 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: demos-stripprefix
-  namespace: kommander
+  name: stripprefix
 spec:
   stripPrefix:
     prefixes:
-      - "/demos/sockshop"
+      - "/sockshop"
     forceSlash: false
