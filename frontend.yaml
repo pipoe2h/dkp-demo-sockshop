@@ -72,7 +72,7 @@ metadata:
   name: front-end
   annotations:
     traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/router.middlewares: kommander-demos-stripprefix@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: demos-stripprefix@kubernetescrd
 spec:
   ingressClassName: kommander-traefik
   rules:
